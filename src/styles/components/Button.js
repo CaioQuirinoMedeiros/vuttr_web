@@ -16,18 +16,18 @@ const sizes = {
 };
 
 const colors = {
-  red: css`
-    background: var(--color-darkRed);
+  danger: css`
+    background: var(--color-danger);
     color: var(--color-white);
     &:hover {
-      background: var(--color-darkerRed);
+      background: var(--color-dangerHover);
     }
   `,
-  blue: css`
-    background: var(--color-darkBlue);
+  primary: css`
+    background: var(--color-primary);
     color: var(--color-white);
     &:hover {
-      background: var(--color-darkerBlue);
+      background: var(--color-primaryHover);
     }
   `
 };
@@ -43,7 +43,7 @@ const Button = styled.button.attrs({
   transition: all 0.2s;
 
   ${props => sizes[props.size || "medium"]};
-  ${props => colors[props.color || "blue"]};
+  ${props => colors[props.color || "primary"]};
 
   ${props =>
     props.animate &&
@@ -70,6 +70,7 @@ const Button = styled.button.attrs({
     props.bare &&
     css`
       background: none;
+      color: var(--color-ink);
       &:hover {
         background: none;
         opacity: 0.7;

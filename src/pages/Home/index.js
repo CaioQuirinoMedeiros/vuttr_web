@@ -22,7 +22,7 @@ export default class Home extends Component {
   state = {
     tools: [],
     loading: false,
-    addModalOpen: false,
+    addToolOpen: false,
     search: "",
     tagsOnly: false
   };
@@ -39,32 +39,34 @@ export default class Home extends Component {
       this.setState({ tools: data.map(tool => this.hashTags(tool)) });
     } catch (err) {
       console.log(err);
-      toast.error("Couldn't load the tools");
+      toast.error("Couldn't load the tools", { className: "toast-error" });
     } finally {
       this.setState({ loading: false });
     }
   };
 
-  deleteTool = async id => {
+  removeTool = async ({ title, id }) => {
     try {
       await api.delete(`tools/${id}`);
-      this.setState({ tools: this.state.tools.filter(tool => tool.id !== id) });
 
-      toast.success("Tool removed!");
+      toast.success(`Tool ${title} removed!`, { className: "toast-success" });
+
+      this.loadTools();
     } catch (err) {
       console.log(err);
-      toast.error("Tool not removed, try again");
+      toast.error("Tool not removed, try again", { className: "toast-error" });
     }
   };
 
   hashTags = tool => ({ ...tool, tags: tool.tags.map(tag => `#${tag}`) });
 
   openAddModal = () => {
-    this.setState({ addModalOpen: true });
+    this.setState({ addToolOpen: true });
   };
 
-  closeAddModal = () => {
-    this.setState({ addModalOpen: false });
+  closeAddModal = (reload = false) => {
+    this.setState({ addToolOpen: false });
+    if (reload) this.loadTools();
   };
 
   searchChange = ({ target }) =>
@@ -87,14 +89,14 @@ export default class Home extends Component {
     return (
       <>
         {filteredTools.map(tool => (
-          <ToolCard key={tool.id} tool={tool} />
+          <ToolCard key={tool.id} tool={tool} remove={this.removeTool} />
         ))}
       </>
     );
   };
 
   render() {
-    const { loading, addModalOpen } = this.state;
+    const { loading, addToolOpen } = this.state;
 
     return (
       <Container>
@@ -130,7 +132,7 @@ export default class Home extends Component {
           {loading ? "Loading..." : this.renderTools()}
         </ToolsContainer>
 
-        {addModalOpen && <AddTool closeModal={this.closeAddModal} />}
+        {addToolOpen && <AddTool closeModal={this.closeAddModal} />}
       </Container>
     );
   }

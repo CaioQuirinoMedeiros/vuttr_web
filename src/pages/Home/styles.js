@@ -60,23 +60,6 @@ export const CheckInput = styled.label`
   }
 `;
 
-export const Button = styled.button`
-  padding: 0.4rem 2.5rem;
-  color: var(--color-white);
-  border-radius: 3px;
-  border-bottom: 3px solid var(--color-lighterShadow);
-  background: var(--color-darkBlue);
-  font-weight: bold;
-  transition: all 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-`;
-
 export const ToolsContainer = styled.div`
   width: 100%;
   display: flex;
