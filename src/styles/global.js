@@ -64,6 +64,7 @@ export default createGlobalStyle`
     font-family: 'Source Sans Pro', "Arial", sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
+    overflow-y: scroll;
 
     &::-webkit-scrollbar {
       width: 1rem;
