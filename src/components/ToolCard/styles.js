@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import Button from "../../styles/components/Button";
 
 export const Container = styled.div`
   padding: 2rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   background: var(--color-white);
   border-radius: 3px;
@@ -38,6 +40,21 @@ export const TagsContainer = styled.div`
 
 export const Tag = styled.span`
   font-weight: bold;
-  color: var(--color-darkBlue);
+  color: var(--color-primaryHover);
   margin-right: 1rem;
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  top: 0rem;
+  right: 0rem;
+  color: var(--color-primary);
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--color-primaryHover);
+  }
 `;
