@@ -92,8 +92,13 @@ export default createGlobalStyle`
     background: none;
     outline: none;
     border: none;
+    font-family: inherit;
     color: inherit;
     cursor: pointer
+  }
+
+  textarea {
+    font-family: inherit;
   }
 
   input {

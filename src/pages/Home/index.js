@@ -3,6 +3,8 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 
 import ToolCard from "../../components/ToolCard";
+import AddTool from "../../components/AddTool";
+import Button from "../../styles/components/Button";
 
 import {
   Container,
@@ -13,7 +15,6 @@ import {
   Search,
   SearchInput,
   CheckInput,
-  Button,
   ToolsContainer
 } from "./styles";
 
@@ -93,7 +94,8 @@ export default class Home extends Component {
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, addModalOpen } = this.state;
+
     return (
       <Container>
         <Header>
@@ -119,7 +121,7 @@ export default class Home extends Component {
               search in tags only
             </CheckInput>
           </Search>
-          <Button type="button" onClick={this.openAddModal}>
+          <Button animate onClick={this.openAddModal}>
             + Add
           </Button>
         </Options>
@@ -127,6 +129,8 @@ export default class Home extends Component {
         <ToolsContainer>
           {loading ? "Loading..." : this.renderTools()}
         </ToolsContainer>
+
+        {addModalOpen && <AddTool closeModal={this.closeAddModal} />}
       </Container>
     );
   }

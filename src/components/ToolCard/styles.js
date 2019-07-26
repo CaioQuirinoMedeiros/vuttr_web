@@ -17,11 +17,11 @@ export const Title = styled.a.attrs({
   font-size: 2rem;
   flex-basis: 0;
   font-weight: bold;
-  color: var(--color-darkerBlue);
+  color: var(--color-ink);
   transition: all 0.2s;
 
   &:hover {
-    color: var(--color-blue);
+    opacity: 0.7;
   }
 `;
 
@@ -38,5 +38,6 @@ export const TagsContainer = styled.div`
 
 export const Tag = styled.span`
   font-weight: bold;
+  color: var(--color-darkBlue);
   margin-right: 1rem;
 `;
