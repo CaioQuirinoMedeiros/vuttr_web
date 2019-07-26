@@ -22,10 +22,8 @@ export default class Home extends Component {
     tools: [],
     loading: false,
     addModalOpen: false,
-    search: {
-      input: "",
-      tagsOnly: false
-    }
+    search: "",
+    tagsOnly: false
   };
 
   componentDidMount() {
@@ -68,8 +66,34 @@ export default class Home extends Component {
     this.setState({ addModalOpen: false });
   };
 
+  searchChange = ({ target }) =>
+    this.setState({
+      search: target.value.toLowerCase()
+    });
+
+  tagsOnlyChange = ({ target }) => this.setState({ tagsOnly: target.checked });
+
+  renderTools = () => {
+    const { search, tagsOnly, tools } = this.state;
+
+    const filteredTools = tools.filter(tool => {
+      const title = tool.title.toLowerCase();
+      return tagsOnly
+        ? !tool.tags.every(tag => !tag.includes(search))
+        : title.includes(search);
+    });
+
+    return (
+      <>
+        {filteredTools.map(tool => (
+          <ToolCard key={tool.id} tool={tool} />
+        ))}
+      </>
+    );
+  };
+
   render() {
-    const { tools, loading } = this.state;
+    const { loading } = this.state;
     return (
       <Container>
         <Header>
@@ -79,9 +103,19 @@ export default class Home extends Component {
 
         <Options>
           <Search>
-            <SearchInput type="text" name="search" placeholder="search" />
-            <CheckInput for="tagsOnly">
-              <input type="checkbox" name="tagsOnly" id="tagsOnly" />
+            <SearchInput
+              type="text"
+              name="search"
+              placeholder="search"
+              onChange={this.searchChange}
+            />
+            <CheckInput htmlFor="tagsOnly">
+              <input
+                type="checkbox"
+                name="tagsOnly"
+                id="tagsOnly"
+                onChange={this.tagsOnlyChange}
+              />
               search in tags only
             </CheckInput>
           </Search>
@@ -91,7 +125,7 @@ export default class Home extends Component {
         </Options>
 
         <ToolsContainer>
-          {loading ? "Loading..." : tools.map(tool => <ToolCard tool={tool} />)}
+          {loading ? "Loading..." : this.renderTools()}
         </ToolsContainer>
       </Container>
     );
