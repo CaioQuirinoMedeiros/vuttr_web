@@ -25,7 +25,15 @@ const toolSchema = Yup.object().shape({
 
 function AddTool({ closeModal }) {
   const handleSubmit = async data => {
-    const tags = data.tags ? [...data.tags.split(" ")] : [];
+    const tags = data.tags
+      ? [
+          ...data.tags
+            .replace(/,/g, " ")
+            .replace(/  +/g, " ")
+            .trim()
+            .split(" ")
+        ]
+      : [];
 
     try {
       const response = await api.post("tools", { ...data, tags });
@@ -36,7 +44,6 @@ function AddTool({ closeModal }) {
 
       closeModal(true);
     } catch (err) {
-      console.log(err);
       toast.error("Unable to add tool, check the inputs", {
         className: "toast-error"
       });
@@ -47,7 +54,6 @@ function AddTool({ closeModal }) {
     <Modal close={closeModal}>
       <Form
         onSubmit={data => {
-          console.log("OI");
           handleSubmit(data);
         }}
         schema={toolSchema}
@@ -76,7 +82,7 @@ function AddTool({ closeModal }) {
           <InputLabel>Tags</InputLabel>
           <Input
             name="tags"
-            placeholder="developer front-end reactjs javascript..."
+            placeholder="developer, front-end, reactjs, javascript..."
           />
         </InputWrapper>
 
