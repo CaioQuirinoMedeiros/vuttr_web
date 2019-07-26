@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 import "react-toastify/dist/ReactToastify.min.css";
 
 export default createGlobalStyle`
@@ -19,14 +18,14 @@ export default createGlobalStyle`
     --color-darkerWhite: ${props => props.theme.colors.darkerWhite};
     --color-darkestWhite: ${props => props.theme.colors.darkestWhite};
     --color-mostDarkWhite: ${props => props.theme.colors.mostDarkWhite};
-    --color-Ink: ${props => props.theme.colors.Ink};
+    --color-ink: ${props => props.theme.colors.Ink};
     --color-lightInk: ${props => props.theme.colors.lightInk};
     --color-lighterInk: ${props => props.theme.colors.lighterInk};
     --color-lightestInk: ${props => props.theme.colors.lightestInk};
     --color-darkerBlue: ${props => props.theme.colors.darkerBlue};
     --color-darkBlue: ${props => props.theme.colors.darkBlue};
     --color-blue: ${props => props.theme.colors.blue};
-    --color-ligtBlue: ${props => props.theme.colors.ligtBlue};
+    --color-lightBlue: ${props => props.theme.colors.lightBlue};
     --color-lighterBlue: ${props => props.theme.colors.lighterBlue};
     --color-lightestBlue: ${props => props.theme.colors.lightestBlue};
     --color-mostLightestBlue: ${props => props.theme.colors.mostLightestBlue};

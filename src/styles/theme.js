@@ -5,7 +5,7 @@ const theme = {
     darkerWhite: "#F5F4F6",
     darkestWhite: "#EBEAED",
     mostDarkestWhite: "#DEDCE1",
-    Ink: "#170C3A",
+    ink: "#170C3A",
     lightInk: "#8F8A9B",
     lighterInk: "#B1ADB9",
     lightestInk: "#C7C4CD",
