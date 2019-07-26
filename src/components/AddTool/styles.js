@@ -27,6 +27,7 @@ export const InputWrapper = styled.div`
 
 export const InputLabel = styled.label`
   margin-bottom: 0.5rem;
+  font-size: 1.6rem;
 `;
 
 export const Input = styled(UnformInput).attrs({
