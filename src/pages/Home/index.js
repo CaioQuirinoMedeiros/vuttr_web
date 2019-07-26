@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import api from "../../services/api";
+import { toast } from "react-toastify";
+
+import ToolCard from "../../components/ToolCard";
 
 import {
   Container,
@@ -11,19 +14,18 @@ import {
   SearchInput,
   CheckInput,
   Button,
-  ToolsContainer,
-  ToolCard,
-  ToolTitle,
-  ToolDescription,
-  ToolTagsContainer,
-  ToolTag
+  ToolsContainer
 } from "./styles";
 
 export default class Home extends Component {
   state = {
-    data: [],
+    tools: [],
     loading: false,
-    addModalOpen: false
+    addModalOpen: false,
+    search: {
+      input: "",
+      tagsOnly: false
+    }
   };
 
   componentDidMount() {
@@ -33,26 +35,41 @@ export default class Home extends Component {
   loadTools = async () => {
     try {
       this.setState({ loading: true });
-      const { data } = api.get("tools");
+      const { data } = await api.get("tools");
 
-      this.setState({ tools: data });
+      this.setState({ tools: data.map(tool => this.hashTags(tool)) });
     } catch (err) {
       console.log(err);
+      toast.error("Couldn't load the tools");
     } finally {
       this.setState({ loading: false });
     }
   };
 
-  openModal = () => {
+  deleteTool = async id => {
+    try {
+      await api.delete(`tools/${id}`);
+      this.setState({ tools: this.state.tools.filter(tool => tool.id !== id) });
+
+      toast.success("Tool removed!");
+    } catch (err) {
+      console.log(err);
+      toast.error("Tool not removed, try again");
+    }
+  };
+
+  hashTags = tool => ({ ...tool, tags: tool.tags.map(tag => `#${tag}`) });
+
+  openAddModal = () => {
     this.setState({ addModalOpen: true });
   };
 
-  closeModal = () => {
+  closeAddModal = () => {
     this.setState({ addModalOpen: false });
   };
 
   render() {
-    const { tools } = this.state;
+    const { tools, loading } = this.state;
     return (
       <Container>
         <Header>
@@ -63,25 +80,18 @@ export default class Home extends Component {
         <Options>
           <Search>
             <SearchInput type="text" name="search" placeholder="search" />
-            <CheckInput type="checkbox" name="tagsOnly" />
+            <CheckInput for="tagsOnly">
+              <input type="checkbox" name="tagsOnly" id="tagsOnly" />
+              search in tags only
+            </CheckInput>
           </Search>
-          <Button type="button" onClick={this.openModal}>
+          <Button type="button" onClick={this.openAddModal}>
             + Add
           </Button>
         </Options>
 
         <ToolsContainer>
-          {tools.map(tool => (
-            <ToolCard key={tool.id}>
-              <ToolTitle href={tool.link}>{tool.title}</ToolTitle>
-              <ToolDescription>{tool.description}</ToolDescription>
-              <ToolTagsContainer>
-                {tool.tags.map(tag => (
-                  <ToolTag>{tag}</ToolTag>
-                ))}
-              </ToolTagsContainer>
-            </ToolCard>
-          ))}
+          {loading ? "Loading..." : tools.map(tool => <ToolCard tool={tool} />)}
         </ToolsContainer>
       </Container>
     );
