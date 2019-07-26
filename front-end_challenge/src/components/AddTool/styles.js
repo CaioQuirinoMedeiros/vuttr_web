@@ -23,6 +23,10 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
+
+  & > span {
+    color: var(--color-danger);
+  }
 `;
 
 export const InputLabel = styled.label`
