@@ -3,11 +3,11 @@ import styled, { css } from "styled-components";
 const sizes = {
   small: css`
     height: 2.8rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   `,
   medium: css`
     height: 3.4rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   `,
   big: css`
     height: 4.4rem;
@@ -19,14 +19,16 @@ const colors = {
   danger: css`
     background: var(--color-danger);
     color: var(--color-white);
-    &:hover {
+    &:hover,
+    &:disabled {
       background: var(--color-dangerHover);
     }
   `,
   primary: css`
     background: var(--color-primary);
     color: var(--color-white);
-    &:hover {
+    &:hover,
+    &:disabled {
       background: var(--color-primaryHover);
     }
   `
@@ -35,6 +37,9 @@ const colors = {
 const Button = styled.button.attrs({
   type: "button"
 })`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 3px;
   padding: 0.2rem 2.5rem;
   font-weight: 700;
@@ -51,6 +56,9 @@ const Button = styled.button.attrs({
       &:hover {
         transform: translateY(-2px);
       }
+      &:disabled {
+        transform: translateY(0);
+      }
     `}
 
   &:active {
@@ -59,11 +67,6 @@ const Button = styled.button.attrs({
 
   &:disabled {
     cursor: not-allowed;
-  }
-
-  &:disabled:hover {
-    transform: translate(0);
-    background: var(--color-darkerShadow);
   }
 
   ${props =>
