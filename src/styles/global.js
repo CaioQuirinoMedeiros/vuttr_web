@@ -9,18 +9,38 @@ export default createGlobalStyle`
     margin: 0;
     outline: none;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-white);
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-shadow);
+      outline: 1px solid slategrey;
+    }
   }
 
   html {
     font-size: 62.5%;
     --color-white: ${props => props.theme.colors.white};
     --color-darkWhite: ${props => props.theme.colors.darkWhite};
+    --color-darkerWhite: ${props => props.theme.colors.darkerWhite};
+    --color-darkestWhite: ${props => props.theme.colors.darkestWhite};
+    --color-mostDarkestWhite: ${props => props.theme.colors.mostDarkestWhite};
     --color-ink: ${props => props.theme.colors.Ink};
     --color-lightInk: ${props => props.theme.colors.lightInk};
+    --color-lighterInk: ${props => props.theme.colors.lighterInk};
     --color-primary: ${props => props.theme.colors.primary};
     --color-primaryHover: ${props => props.theme.colors.primaryHover};
     --color-danger: ${props => props.theme.colors.danger};
     --color-dangerHover: ${props => props.theme.colors.dangerHover};
+    --color-lightRed: ${props => props.theme.colors.lightRed};
+    --color-mostLightestRed: ${props => props.theme.colors.mostLightestRed};
     --color-success: ${props => props.theme.colors.success};
     --color-successHover: ${props => props.theme.colors.successHover};
     --color-darkerShadow: ${props => props.theme.colors.darkerShadow};
@@ -51,21 +71,8 @@ export default createGlobalStyle`
     font-family: 'Source Sans Pro', "Arial", sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    overflow-y: scroll;
 
-    &::-webkit-scrollbar {
-      width: 1rem;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: var(--color-white);
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--color-shadow);
-      outline: 1px solid slategrey;
-    }
+    
   }
 
   #root {
