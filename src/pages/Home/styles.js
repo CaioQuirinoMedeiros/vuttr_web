@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { Form as FormikForm } from "formik";
+
+import ButtonComponent from "../../components/Button";
+import StyledInput from "../../styles/components/Input";
 
 export const Container = styled.div`
   width: 100%;
@@ -14,6 +18,7 @@ export const Options = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 
   @media ${props => props.theme.mediaQueries.small} {
     flex-direction: column;
@@ -25,9 +30,27 @@ export const Options = styled.div`
   }
 `;
 
-export const Search = styled.div`
+export const Form = styled(FormikForm)`
+  height: 5rem;
   display: flex;
   align-items: center;
+
+  background: var(--color-white);
+  box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
+  border-radius: 3px;
+  padding: 1rem;
+`;
+
+export const Input = styled(StyledInput)`
+  margin: 0 !important;
+  width: 18rem;
+  height: 100%;
+`;
+
+export const SearchButton = styled(ButtonComponent)`
+  margin-right: 1rem;
+  height: 100%;
+  padding: 0 1rem;
 `;
 
 export const SearchInput = styled.input`
@@ -38,12 +61,17 @@ export const SearchInput = styled.input`
   border: 1px solid var(--color-lightInk);
   border-radius: 3px;
 `;
+
 export const CheckInput = styled.label`
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
 
   & input {
-    margin-right: 0.5rem;
+    height: 1.7rem;
+    width: 1.7rem;
+    margin: 0 1rem !important;
+    flex-shrink: 0;
   }
 `;
 
@@ -51,5 +79,6 @@ export const ToolsContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 2rem 0;
 `;

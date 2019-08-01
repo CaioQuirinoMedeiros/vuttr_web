@@ -42,7 +42,7 @@ function AddTool({ closeModal }) {
         className: "toast-success"
       });
 
-      closeModal(true);
+      closeModal({ reload: true });
     } catch (err) {
       toast.error("Unable to add tool, check the inputs", {
         className: "toast-error"
