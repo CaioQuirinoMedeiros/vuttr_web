@@ -69,7 +69,7 @@ export default class Home extends Component {
     this.setState({ addToolOpen: true });
   };
 
-  closeAddModal = ({ reload = false }) => {
+  closeAddModal = ({ reload = false } = {}) => {
     this.setState({ addToolOpen: false });
     if (reload) this.loadTools();
   };

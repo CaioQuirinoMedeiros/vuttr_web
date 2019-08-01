@@ -1,33 +1,24 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { Container } from "./styles";
 
-export default class Modal extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-    close: PropTypes.func
-  };
-
-  static defaultProps = {
-    close: () => {}
-  };
-
-  componentDidMount() {
-    document.addEventListener("mousedown", this.clickOutsideEventListener);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("click", this.clickOutsideEventListener);
-  }
-
-  clickOutsideEventListener = e => {
-    const { close } = this.props;
+const Modal = ({ close, children }) => {
+  const clickOutsideEventListener = e => {
     if (e.target.id === "outsideModal") close();
   };
 
-  render() {
-    const { children } = this.props;
-    return <Container id="outsideModal">{children}</Container>;
-  }
-}
+  useEffect(() => {
+    console.log("OPA ADICIONOU");
+    document.addEventListener("mousedown", clickOutsideEventListener);
+
+    return () => {
+      console.log("OPA REMOVEU");
+      document.removeEventListener("click", clickOutsideEventListener);
+    };
+  });
+
+  return <Container id="outsideModal">{children}</Container>;
+};
+
+export default Modal;
