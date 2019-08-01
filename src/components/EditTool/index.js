@@ -17,18 +17,22 @@ const toolSchema = Yup.object().shape({
   tags: Yup.array().of(Yup.string().required("Tag name is required"))
 });
 
-function AddTool({ closeModal }) {
-  const handleAddTodo = async data => {
+function EditTool({
+  tool: { title, link, description, tags, id },
+  closeModal
+}) {
+  const handleEditTool = async data => {
+    console.log("DATA: ", data);
     try {
-      const response = await api.post("tools", data);
+      const response = await api.put(`tools/${id}`, data);
 
-      toast.success(`Tool ${response.data.title} added!`, {
+      toast.success(`Tool ${response.data.title} edited!`, {
         className: "toast-success"
       });
 
       closeModal({ reload: true });
     } catch (err) {
-      toast.error("Unable to add tool, check the inputs", {
+      toast.error("Unable to edit tool", {
         className: "toast-error"
       });
     }
@@ -38,15 +42,15 @@ function AddTool({ closeModal }) {
     <Modal close={closeModal}>
       <Formik
         validationSchema={toolSchema}
-        initialValues={{ tags: [] }}
+        initialValues={{ title, description, link, tags }}
         onSubmit={async (values, { setSubmitting }) => {
-          await handleAddTodo(values);
+          await handleEditTool(values);
           setSubmitting(false);
         }}
-        render={props => ToolForm(props, closeModal, "Add New Tool", "Add")}
+        render={props => ToolForm(props, closeModal, "Edit Tool", "Edit")}
       />
     </Modal>
   );
 }
 
-export default AddTool;
+export default EditTool;
