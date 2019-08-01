@@ -23,7 +23,7 @@ const signInSchema = Yup.object().shape({
   password: Yup.string().required("Fill in your password")
 });
 
-const SignIn = () => (
+const SignIn = ({ history }) => (
   <Container>
     <Formik
       validationSchema={signInSchema}
@@ -33,6 +33,8 @@ const SignIn = () => (
           const { data } = await api.post("login", values);
 
           login(data.token);
+
+          history.push("/app");
 
           toast.success(`Welcome, ${data.user.name}!`, {
             className: "toast-success"
@@ -55,6 +57,7 @@ const SignIn = () => (
           />
           <Input
             name="password"
+            type="password"
             label="Password"
             placeholder="your password..."
             error={touched.password ? errors.password : null}

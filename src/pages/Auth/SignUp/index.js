@@ -26,7 +26,7 @@ const signUpSchema = Yup.object().shape({
     .required("Password is required")
 });
 
-const SignUp = () => (
+const SignUp = ({ history }) => (
   <Container>
     <Formik
       validationSchema={signUpSchema}
@@ -37,6 +37,8 @@ const SignUp = () => (
           const { data } = await api.post("register", values);
 
           login(data.token);
+
+          history.push("/app");
 
           toast.success(`Welcome, ${data.user.name}!`, {
             className: "toast-success"
@@ -65,6 +67,7 @@ const SignUp = () => (
           />
           <Input
             name="password"
+            type="password"
             label="Password"
             placeholder="your password..."
             error={touched.password ? errors.password : null}
