@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Confirm from "../Confirm";
 
@@ -37,8 +39,8 @@ class ToolCard extends Component {
             <Tag key={tag}>{tag}</Tag>
           ))}
         </TagsContainer>
-        <DeleteButton bare onClick={this.openConfirmRemoveModal}>
-          remove
+        <DeleteButton onClick={this.openConfirmRemoveModal}>
+          <FontAwesomeIcon icon={faTimes} />
         </DeleteButton>
 
         {confirmRemoveModalOpen && (
@@ -46,7 +48,9 @@ class ToolCard extends Component {
             confirm={() => remove(tool)}
             closeModal={this.closeConfirmRemoveModal}
             message={`Are you sure you want to remove ${tool.title}?`}
-          />
+          >
+            Remove tool
+          </Confirm>
         )}
       </Container>
     );

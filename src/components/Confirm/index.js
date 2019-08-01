@@ -4,10 +4,10 @@ import Modal from "../Modal";
 
 import { Container, Title, Message, ButtonsWrapper, Button } from "./styles";
 
-const Confirm = ({ closeModal, message, confirm }) => (
+const Confirm = ({ closeModal, title, message, confirm, children }) => (
   <Modal close={closeModal}>
     <Container>
-      <Title>- Remove Tool</Title>
+      <Title>{children}</Title>
 
       <Message>{message}</Message>
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
   padding: 2rem;
   margin-bottom: 1rem;
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
   background: var(--color-white);
   border-radius: 3px;
-  border: 1px solid var(--color-lightInk);
+  box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
 `;
 
 export const Title = styled.a.attrs({
@@ -50,10 +51,10 @@ export const DeleteButton = styled.button`
   font-weight: bold;
   top: 0rem;
   right: 0rem;
-  color: var(--color-primary);
+  color: var(--color-danger);
   transition: all 0.2s;
 
   &:hover {
-    color: var(--color-primaryHover);
+    color: var(--color-dangerHover);
   }
 `;
