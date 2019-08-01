@@ -1,5 +1,4 @@
 import React from "react";
-import { Field } from "formik";
 
 import StyledInput from "../../styles/components/Input";
 
@@ -7,8 +6,8 @@ import { InputWrapper, Label, Error } from "./styles";
 
 const Input = props => (
   <InputWrapper>
-    <Label>{props.label}</Label>
-    <StyledInput {...props} />
+    <Label htmlFor={props.name}>{props.label}</Label>
+    <StyledInput {...props} id={props.name} />
     {props.error && <Error>{props.error}</Error>}
   </InputWrapper>
 );

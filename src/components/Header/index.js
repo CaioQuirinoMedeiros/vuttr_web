@@ -22,7 +22,7 @@ const Header = ({ history }) => {
         <Title>VUTTR</Title>
         <SubTitle>Very Useful Tools to Remeber</SubTitle>
       </TitleWrapper>
-      <Button bare onClick={() => openLogoutModal(true)}>
+      <Button onClick={() => openLogoutModal(true)}>
         <FontAwesomeIcon icon={faDoorOpen} />
       </Button>
 

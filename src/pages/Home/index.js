@@ -35,7 +35,6 @@ export default class Home extends Component {
   }
 
   loadTools = async ({ title = "", tag = "" } = {}) => {
-    console.log("LOADING", title, tag);
     try {
       this.setState({ loading: true });
 
@@ -63,7 +62,7 @@ export default class Home extends Component {
     }
   };
 
-  hashTags = tool => ({ ...tool, tags: tool.tags.map(tag => `#${tag}`) });
+  hashTags = tool => ({ ...tool, tagsHashed: tool.tags.map(tag => `#${tag}`) });
 
   openAddModal = () => {
     this.setState({ addToolOpen: true });
@@ -80,7 +79,12 @@ export default class Home extends Component {
     return (
       <>
         {tools.map(tool => (
-          <ToolCard key={tool.id} tool={tool} remove={this.removeTool} />
+          <ToolCard
+            key={tool.id}
+            tool={tool}
+            remove={this.removeTool}
+            loadTools={this.loadTools}
+          />
         ))}
       </>
     );

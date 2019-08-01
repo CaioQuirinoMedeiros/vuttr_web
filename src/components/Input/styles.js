@@ -9,7 +9,6 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled.label`
-  color: var(--color-ink);
   margin-bottom: 0.7rem;
   font-size: 1.5rem;
 `;

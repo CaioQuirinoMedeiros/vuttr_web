@@ -1,9 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { Formik, FieldArray, Field } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Formik } from "formik";
 
 import api from "../../services/api";
 

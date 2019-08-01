@@ -4,7 +4,6 @@ import { Form as FormikForm } from "formik";
 
 import InputComponent from "../../components/Input";
 import ButtonComponent from "../../components/Button";
-import StyledButton from "../../styles/components/Button";
 
 export const Container = styled.div`
   width: 100%;
