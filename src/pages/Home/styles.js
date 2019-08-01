@@ -9,19 +9,6 @@ export const Container = styled.div`
   padding: 3rem;
 `;
 
-export const Header = styled.header`
-  width: 100%;
-  margin-bottom: 4rem;
-`;
-export const Title = styled.h1`
-  font-size: 5rem;
-  letter-spacing: 2px;
-`;
-export const SubTitle = styled.h2`
-  margin-top: 1rem;
-  font-size: 3rem;
-  font-weight: 400;
-`;
 export const Options = styled.div`
   width: 100%;
   display: flex;

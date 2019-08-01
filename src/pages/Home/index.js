@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 
+import Header from "../../components/Header";
 import ToolCard from "../../components/ToolCard";
 import AddTool from "../../components/AddTool";
 import Button from "../../styles/components/Button";
 
 import {
   Container,
-  Header,
   Title,
   SubTitle,
   Options,
@@ -100,10 +100,7 @@ export default class Home extends Component {
 
     return (
       <Container>
-        <Header>
-          <Title>VUTTR</Title>
-          <SubTitle>Very Useful Tools to Remeber</SubTitle>
-        </Header>
+        <Header />
 
         <Options>
           <Search>
