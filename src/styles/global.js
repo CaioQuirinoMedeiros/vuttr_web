@@ -32,7 +32,7 @@ export default createGlobalStyle`
     --color-darkerWhite: ${props => props.theme.colors.darkerWhite};
     --color-darkestWhite: ${props => props.theme.colors.darkestWhite};
     --color-mostDarkestWhite: ${props => props.theme.colors.mostDarkestWhite};
-    --color-ink: ${props => props.theme.colors.Ink};
+    --color-ink: ${props => props.theme.colors.ink};
     --color-lightInk: ${props => props.theme.colors.lightInk};
     --color-lighterInk: ${props => props.theme.colors.lighterInk};
     --color-primary: ${props => props.theme.colors.primary};
@@ -71,8 +71,7 @@ export default createGlobalStyle`
     font-family: 'Source Sans Pro', "Arial", sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-
-    
+    overflow-y: overlay;
   }
 
   #root {

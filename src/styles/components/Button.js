@@ -46,6 +46,7 @@ const Button = styled.button.attrs({
   letter-spacing: 1px;
   border-bottom: 3px solid var(--color-lighterShadow);
   transition: all 0.2s;
+  box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
 
   ${props => sizes[props.size || "medium"]};
   ${props => colors[props.color || "primary"]};
