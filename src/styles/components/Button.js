@@ -31,6 +31,14 @@ const colors = {
     &:disabled {
       background: var(--color-primaryHover);
     }
+  `,
+  secundary: css`
+    background: var(--color-mostLightestBlue);
+    color: var(--color-blue);
+    &:hover,
+    &:disabled {
+      background: var(--color-lightestBlue);
+    }
   `
 };
 
@@ -69,17 +77,6 @@ const Button = styled.button.attrs({
   &:disabled {
     cursor: not-allowed;
   }
-
-  ${props =>
-    props.bare &&
-    css`
-      background: none;
-      color: var(--color-ink);
-      &:hover {
-        background: none;
-        opacity: 0.7;
-      }
-    `}
 `;
 
 export default Button;

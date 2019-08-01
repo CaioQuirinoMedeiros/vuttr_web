@@ -37,6 +37,9 @@ export default createGlobalStyle`
     --color-lighterInk: ${props => props.theme.colors.lighterInk};
     --color-primary: ${props => props.theme.colors.primary};
     --color-primaryHover: ${props => props.theme.colors.primaryHover};
+    --color-blue: ${props => props.theme.colors.blue};
+    --color-lightestBlue: ${props => props.theme.colors.lightestBlue};
+    --color-mostLightestBlue: ${props => props.theme.colors.mostLightestBlue};
     --color-danger: ${props => props.theme.colors.danger};
     --color-dangerHover: ${props => props.theme.colors.dangerHover};
     --color-lightRed: ${props => props.theme.colors.lightRed};
