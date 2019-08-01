@@ -5,12 +5,16 @@ export const Container = styled.div`
   padding: 2rem;
   margin-bottom: 1rem;
   display: flex;
-  flex-direction: column;
-  position: relative;
 
   background: var(--color-white);
   border-radius: 3px;
   box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
+`;
+
+export const ToolInfo = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Title = styled.a.attrs({
@@ -32,6 +36,7 @@ export const Description = styled.p`
   font-size: 1.5rem;
   line-height: 2rem;
 `;
+
 export const TagsContainer = styled.div`
   width: 100%;
   display: flex;
@@ -44,9 +49,15 @@ export const Tag = styled.span`
   margin-right: 1rem;
 `;
 
-export const DeleteButton = styled.button`
-  position: absolute;
-  padding: 0.8rem 1rem;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  margin-left: 2rem;
+`;
+
+export const ActionButton = styled.button`
+  margin-left: 2rem;
   font-size: 1.5rem;
   font-weight: bold;
   top: 0rem;
