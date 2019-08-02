@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons"
 
-import Confirm from "../Confirm";
-import EditTool from "../EditTool";
+import Confirm from "../Confirm"
+import EditTool from "../EditTool"
 
 import {
   Container,
@@ -14,11 +15,11 @@ import {
   Tag,
   ButtonsWrapper,
   ActionButton
-} from "./styles";
+} from "./styles"
 
 const ToolCard = ({ tool, remove, loadTools }) => {
-  const [removeModal, openRemoveModal] = useState(false);
-  const [editModal, openEditModal] = useState(false);
+  const [removeModal, openRemoveModal] = useState(false)
+  const [editModal, openEditModal] = useState(false)
 
   return (
     <Container>
@@ -59,13 +60,24 @@ const ToolCard = ({ tool, remove, loadTools }) => {
         <EditTool
           tool={tool}
           closeModal={({ reload = false } = {}) => {
-            openEditModal(false);
-            if (reload) loadTools();
+            openEditModal(false)
+            if (reload) loadTools()
           }}
         />
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default ToolCard;
+ToolCard.propTypes = {
+  tool: PropTypes.shape({
+    title: PropTypes.string,
+    link: PropTypes.string,
+    description: PropTypes.string,
+    tagsHashed: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired,
+  remove: PropTypes.func.isRequired,
+  loadTools: PropTypes.func.isRequired
+}
+
+export default ToolCard

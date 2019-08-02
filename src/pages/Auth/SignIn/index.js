@@ -1,10 +1,10 @@
-import React from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
+import React from "react"
+import { Formik } from "formik"
+import * as Yup from "yup"
+import { toast } from "react-toastify"
 
-import api from "../../../services/api";
-import { login } from "../../../services/auth";
+import api from "../../../services/api"
+import { login } from "../../../services/auth"
 
 import {
   Container,
@@ -14,14 +14,14 @@ import {
   ButtonsWrapper,
   Button,
   Link
-} from "../styles";
+} from "../styles"
 
 const signInSchema = Yup.object().shape({
   email: Yup.string()
-    .email("This is not a valid email")
+    .email("That is is not a valid email")
     .required("Fill in your email"),
   password: Yup.string().required("Fill in your password")
-});
+})
 
 const SignIn = ({ history }) => (
   <Container>
@@ -30,20 +30,19 @@ const SignIn = ({ history }) => (
       validateOnBlur={false}
       onSubmit={async (values, actions) => {
         try {
-          const { data } = await api.post("login", values);
+          const { data } = await api.post("login", values)
 
-          login(data.token);
+          login(data.token)
 
-          history.push("/app");
+          history.push("/app")
 
           toast.success(`Welcome, ${data.user.name}!`, {
             className: "toast-success"
-          });
+          })
         } catch (err) {
-          console.log(err);
-          toast.error("Invalid credentials", { className: "toast-error" });
+          toast.error("Invalid credentials", { className: "toast-error" })
         } finally {
-          actions.setSubmitting(false);
+          actions.setSubmitting(false)
         }
       }}
       render={({ isValid, isSubmitting, errors, touched }) => (
@@ -76,6 +75,6 @@ const SignIn = ({ history }) => (
       )}
     />
   </Container>
-);
+)
 
-export default SignIn;
+export default SignIn

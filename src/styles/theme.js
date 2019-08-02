@@ -33,6 +33,6 @@ const theme = {
     large: "only screen and (max-width: 80em)",
     largest: "only screen and (max-width: 90em)"
   }
-};
+}
 
-export default theme;
+export default theme

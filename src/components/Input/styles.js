@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const InputWrapper = styled.div`
   width: 100%;
@@ -6,12 +6,12 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   position: relative;
   margin-bottom: 2.5rem;
-`;
+`
 
 export const Label = styled.label`
   margin-bottom: 0.7rem;
   font-size: 1.5rem;
-`;
+`
 
 export const Error = styled.span`
   width: 100%;
@@ -21,4 +21,4 @@ export const Error = styled.span`
   top: 105%;
   color: var(--color-danger);
   font-size: 1.2rem;
-`;
+`

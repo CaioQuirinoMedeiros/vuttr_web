@@ -1,11 +1,11 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
-import { ToastContainer, Flip } from "react-toastify";
+import React from "react"
+import { ThemeProvider } from "styled-components"
+import { ToastContainer, Flip } from "react-toastify"
 
-import Routes from "./routes";
+import Routes from "./routes"
 
-import GlobalStyle from "./styles/global";
-import theme from "./styles/theme";
+import GlobalStyle from "./styles/global"
+import theme from "./styles/theme"
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <ToastContainer transition={Flip} autoClose={3500} hideProgressBar />
       </>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

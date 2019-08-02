@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import api from "../../services/api";
-import { Formik } from "formik";
-import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import ReactLoading from "react-loading";
+import React, { Component } from "react"
+import api from "../../services/api"
+import { Formik } from "formik"
+import { toast } from "react-toastify"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import ReactLoading from "react-loading"
 
-import Header from "../../components/Header";
-import ToolCard from "../../components/ToolCard";
-import AddTool from "../../components/AddTool";
-import Button from "../../styles/components/Button";
+import Header from "../../components/Header"
+import ToolCard from "../../components/ToolCard"
+import AddTool from "../../components/AddTool"
+import Button from "../../styles/components/Button"
 
 import {
   Container,
@@ -19,62 +19,58 @@ import {
   SearchButton,
   CheckInput,
   ToolsContainer
-} from "./styles";
+} from "./styles"
 
 export default class Home extends Component {
   state = {
     tools: [],
     loading: false,
-    addToolOpen: false,
-    search: "",
-    tagsOnly: false
-  };
+    addToolOpen: false
+  }
 
   componentDidMount() {
-    this.loadTools();
+    this.loadTools()
   }
 
   loadTools = async ({ title = "", tag = "" } = {}) => {
     try {
-      this.setState({ loading: true });
+      this.setState({ loading: true })
 
-      const { data } = await api.get(`tools?title=${title}&tag=${tag}`);
+      const { data } = await api.get(`tools?title=${title}&tag=${tag}`)
 
-      this.setState({ tools: data.map(tool => this.hashTags(tool)) });
+      this.setState({ tools: data.map(tool => this.hashTags(tool)) })
     } catch (err) {
-      console.log(err);
-      toast.error("Couldn't load the tools", { className: "toast-error" });
+      toast.error("Couldn't load the tools", { className: "toast-error" })
     } finally {
-      this.setState({ loading: false });
+      this.setState({ loading: false })
     }
-  };
+  }
 
   removeTool = async ({ title, id }) => {
     try {
-      await api.delete(`tools/${id}`);
+      await api.delete(`tools/${id}`)
 
-      toast.success(`Tool ${title} removed!`, { className: "toast-success" });
+      toast.success(`Tool ${title} removed!`, { className: "toast-success" })
 
-      this.loadTools();
+      this.loadTools()
     } catch (err) {
-      console.log(err);
-      toast.error("Tool not removed, try again", { className: "toast-error" });
+      toast.error("Tool not removed, try again", { className: "toast-error" })
     }
-  };
+  }
 
-  hashTags = tool => ({ ...tool, tagsHashed: tool.tags.map(tag => `#${tag}`) });
+  hashTags = tool => ({ ...tool, tagsHashed: tool.tags.map(tag => `#${tag}`) })
 
   openAddModal = () => {
-    this.setState({ addToolOpen: true });
-  };
+    this.setState({ addToolOpen: true })
+  }
 
   closeAddModal = ({ reload = false } = {}) => {
-    this.setState({ addToolOpen: false });
-    if (reload) this.loadTools();
-  };
+    this.setState({ addToolOpen: false })
+    if (reload) this.loadTools()
+  }
 
   renderTools = () => {
-    const { tools } = this.state;
+    const { tools } = this.state
 
     return (
       <>
@@ -87,11 +83,11 @@ export default class Home extends Component {
           />
         ))}
       </>
-    );
-  };
+    )
+  }
 
   render() {
-    const { loading, addToolOpen } = this.state;
+    const { loading, addToolOpen } = this.state
 
     return (
       <Container>
@@ -100,8 +96,8 @@ export default class Home extends Component {
         <Options>
           <Formik
             onSubmit={values => {
-              const searchField = values.tagsOnly ? "tag" : "title";
-              this.loadTools({ [searchField]: values.search });
+              const searchField = values.tagsOnly ? "tag" : "title"
+              this.loadTools({ [searchField]: values.search })
             }}
             initialValues={{ search: "", tagsOnly: false }}
             render={() => (
@@ -132,6 +128,6 @@ export default class Home extends Component {
 
         {addToolOpen && <AddTool closeModal={this.closeAddModal} />}
       </Container>
-    );
+    )
   }
 }

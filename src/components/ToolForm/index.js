@@ -1,7 +1,7 @@
-import React from "react";
-import { FieldArray } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import React from "react"
+import { FieldArray } from "formik"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
 
 import {
   Form,
@@ -16,7 +16,7 @@ import {
   Error,
   ButtonsWrapper,
   Button
-} from "./styles";
+} from "./styles"
 
 const ToolForm = (
   { values, errors, touched, isValid, isSubmitting },
@@ -72,7 +72,7 @@ const ToolForm = (
 
           {values.tags.length < 9 && (
             <TagWrapper>
-              <AddTagButton type="button" onClick={() => arrayHelpers.push("")}>
+              <AddTagButton onClick={() => arrayHelpers.push("")}>
                 add tag
               </AddTagButton>
             </TagWrapper>
@@ -92,6 +92,6 @@ const ToolForm = (
       </Button>
     </ButtonsWrapper>
   </Form>
-);
+)
 
-export default ToolForm;
+export default ToolForm

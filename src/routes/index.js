@@ -1,12 +1,12 @@
-import React from "react";
-import { Switch, BrowserRouter, Redirect } from "react-router-dom";
+import React from "react"
+import { Switch, BrowserRouter, Redirect } from "react-router-dom"
 
-import Private from "./private";
-import Guest from "./guest";
+import Private from "./private"
+import Guest from "./guest"
 
-import SignIn from "../pages/Auth/SignIn";
-import SignUp from "../pages/Auth/SignUp";
-import Home from "../pages/Home";
+import SignIn from "../pages/Auth/SignIn"
+import SignUp from "../pages/Auth/SignUp"
+import Home from "../pages/Home"
 
 const Routes = () => (
   <BrowserRouter>
@@ -17,6 +17,6 @@ const Routes = () => (
       <Redirect to="/signin" />
     </Switch>
   </BrowserRouter>
-);
+)
 
-export default Routes;
+export default Routes

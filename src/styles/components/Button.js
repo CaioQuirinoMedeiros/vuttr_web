@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components"
 
 const sizes = {
   small: css`
@@ -13,7 +13,7 @@ const sizes = {
     height: 4.4rem;
     font-size: 1.8rem;
   `
-};
+}
 
 const colors = {
   danger: css`
@@ -40,7 +40,7 @@ const colors = {
       background: var(--color-lightestBlue);
     }
   `
-};
+}
 
 const Button = styled.button.attrs({
   type: "button"
@@ -77,6 +77,6 @@ const Button = styled.button.attrs({
   &:disabled {
     cursor: not-allowed;
   }
-`;
+`
 
-export default Button;
+export default Button

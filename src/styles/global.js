@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "react-toastify/dist/ReactToastify.min.css";
+import { createGlobalStyle } from "styled-components"
+import "react-toastify/dist/ReactToastify.min.css"
 
 export default createGlobalStyle`
   @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap");
@@ -16,6 +16,7 @@ export default createGlobalStyle`
 
     &::-webkit-scrollbar-track {
       background: var(--color-white);
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     }
 
@@ -106,6 +107,7 @@ export default createGlobalStyle`
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus {
       -webkit-text-fill-color: inherit;
+      box-shadow: 0 0 0px 1000px var(--color-lighterShadow) inset;
       -webkit-box-shadow: 0 0 0px 1000px var(--color-lighterShadow) inset;
       transition: background-color 5000s ease-in-out 0s;
     }
@@ -139,4 +141,4 @@ export default createGlobalStyle`
       background: var(--color-dangerHover);
     }
   }
-`;
+`

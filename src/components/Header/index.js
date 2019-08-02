@@ -1,20 +1,21 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+import { withRouter } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faDoorOpen } from "@fortawesome/free-solid-svg-icons"
 
-import { logout } from "../../services/auth";
-import Confirm from "../Confirm";
+import { logout } from "../../services/auth"
+import Confirm from "../Confirm"
 
-import { Container, TitleWrapper, Title, SubTitle, Button } from "./styles";
+import { Container, TitleWrapper, Title, SubTitle, Button } from "./styles"
 
 const Header = ({ history }) => {
-  const [logoutModal, openLogoutModal] = useState(false);
+  const [logoutModal, openLogoutModal] = useState(false)
 
   const handleLogout = () => {
-    logout();
-    history.push("/signin");
-  };
+    logout()
+    history.push("/signin")
+  }
 
   return (
     <Container>
@@ -36,7 +37,13 @@ const Header = ({ history }) => {
         </Confirm>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default withRouter(Header);
+Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+}
+
+export default withRouter(Header)
