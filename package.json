@@ -2,6 +2,7 @@
   "name": "vuttr_caio",
   "version": "0.1.0",
   "author": "Caio Quirino",
+  "homepage": "https://caioquirinomedeiros.github.io/vuttr_web",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.20",
@@ -10,6 +11,7 @@
     "@rocketseat/unform": "^1.5.1",
     "axios": "^0.19.0",
     "formik": "^1.5.8",
+    "gh-pages": "^2.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -24,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
