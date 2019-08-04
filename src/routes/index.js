@@ -9,7 +9,7 @@ import SignUp from "../pages/Auth/SignUp"
 import Home from "../pages/Home"
 
 const Routes = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       <Guest exact path="/signin" component={SignIn} />
       <Guest exact path="/signup" component={SignUp} />
