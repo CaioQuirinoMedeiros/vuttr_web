@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import GlobalButton from "../../styles/components/Button"
+
+import ButtonComponent from "../Button"
 
 export const Container = styled.div`
   width: 99%;
@@ -29,6 +30,7 @@ export const ButtonsWrapper = styled.div`
   margin-top: 1rem;
 `
 
-export const Button = styled(GlobalButton)`
+export const Button = styled(ButtonComponent)`
+  width: 12rem;
   margin-left: 1rem;
 `

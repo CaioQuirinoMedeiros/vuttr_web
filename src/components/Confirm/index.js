@@ -1,28 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 
 import Modal from "../Modal"
 
 import { Container, Title, Message, ButtonsWrapper, Button } from "./styles"
 
-const Confirm = ({ closeModal, message, confirm, children }) => (
-  <Modal close={closeModal}>
-    <Container>
-      <Title>{children}</Title>
+const Confirm = ({ closeModal, message, confirm, children }) => {
+  const [loading, setLoading] = useState(false)
 
-      <Message>{message}</Message>
+  return (
+    <Modal close={closeModal}>
+      <Container>
+        <Title>{children}</Title>
 
-      <ButtonsWrapper>
-        <Button animate onClick={() => confirm()}>
-          Yes
-        </Button>
-        <Button animate color="danger" onClick={closeModal}>
-          Cancel
-        </Button>
-      </ButtonsWrapper>
-    </Container>
-  </Modal>
-)
+        <Message>{message}</Message>
+
+        <ButtonsWrapper>
+          <Button
+            animate
+            loading={loading}
+            onClick={async () => {
+              setLoading(true)
+              await confirm()
+              setLoading(false)
+            }}
+          >
+            Yes
+          </Button>
+          <Button animate color="danger" onClick={closeModal}>
+            Cancel
+          </Button>
+        </ButtonsWrapper>
+      </Container>
+    </Modal>
+  )
+}
 
 Confirm.propTypes = {
   closeModal: PropTypes.func.isRequired,
