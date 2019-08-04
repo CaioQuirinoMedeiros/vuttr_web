@@ -14,7 +14,8 @@ export const Container = styled.div`
 `
 
 export const Form = styled(FormikForm)`
-  width: 55rem;
+  width: 95%;
+  max-width: 55rem;
   display: flex;
   flex-direction: column;
   align-items: center;
