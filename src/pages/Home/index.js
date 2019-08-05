@@ -18,7 +18,8 @@ import {
   Input,
   SearchButton,
   CheckInput,
-  ToolsContainer
+  ToolsContainer,
+  Message
 } from "./styles"
 
 export default class Home extends Component {
@@ -74,14 +75,18 @@ export default class Home extends Component {
 
     return (
       <>
-        {tools.map(tool => (
-          <ToolCard
-            key={tool.id}
-            tool={tool}
-            remove={this.removeTool}
-            loadTools={this.loadTools}
-          />
-        ))}
+        {tools.length ? (
+          tools.map(tool => (
+            <ToolCard
+              key={tool.id}
+              tool={tool}
+              remove={this.removeTool}
+              loadTools={this.loadTools}
+            />
+          ))
+        ) : (
+          <Message>You have no tools saved</Message>
+        )}
       </>
     )
   }

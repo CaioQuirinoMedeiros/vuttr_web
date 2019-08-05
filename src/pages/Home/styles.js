@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Form as FormikForm } from "formik";
+import styled from "styled-components"
+import { Form as FormikForm } from "formik"
 
-import ButtonComponent from "../../components/Button";
-import StyledInput from "../../styles/components/Input";
+import ButtonComponent from "../../components/Button"
+import StyledInput from "../../styles/components/Input"
 
 export const Container = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem;
-`;
+`
 
 export const Options = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ export const Options = styled.div`
       margin-bottom: 1rem;
     }
   }
-`;
+`
 
 export const Form = styled(FormikForm)`
   height: 5rem;
@@ -39,19 +39,19 @@ export const Form = styled(FormikForm)`
   box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
   border-radius: 3px;
   padding: 1rem;
-`;
+`
 
 export const Input = styled(StyledInput)`
   margin: 0 !important;
   width: 18rem;
   height: 100%;
-`;
+`
 
 export const SearchButton = styled(ButtonComponent)`
   margin-right: 1rem;
   height: 100%;
   padding: 0 1rem;
-`;
+`
 
 export const SearchInput = styled.input`
   margin-right: 1rem;
@@ -60,7 +60,7 @@ export const SearchInput = styled.input`
   padding: 0.4rem 1rem;
   border: 1px solid var(--color-lightInk);
   border-radius: 3px;
-`;
+`
 
 export const CheckInput = styled.label`
   display: flex;
@@ -73,7 +73,7 @@ export const CheckInput = styled.label`
     margin: 0 1rem !important;
     flex-shrink: 0;
   }
-`;
+`
 
 export const ToolsContainer = styled.div`
   width: 100%;
@@ -81,4 +81,9 @@ export const ToolsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
-`;
+`
+
+export const Message = styled.h2`
+  font-size: 2.6rem;
+  color: var(--color-lightInk);
+`
