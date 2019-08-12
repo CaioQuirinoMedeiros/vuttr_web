@@ -84,7 +84,7 @@ function EditTool({
                           error={
                             touched.tags && errors.tags
                               ? errors.tags[index]
-                              : false
+                              : undefined
                           }
                         />
                         <DeleteTagButton
