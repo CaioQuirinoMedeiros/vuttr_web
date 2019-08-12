@@ -3,7 +3,6 @@ import api from '../../services/api';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ReactLoading from 'react-loading';
 
 import Header from '../../components/Header';
@@ -141,7 +140,7 @@ function Home() {
           render={() => (
             <Form>
               <SearchButton type="submit" animate>
-                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon="search" />
               </SearchButton>
               <Input name="search" placeholder="Search..." />
               <CheckInput htmlFor="tagsOnly">

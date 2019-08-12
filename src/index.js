@@ -6,10 +6,11 @@ import {
   faTrash,
   faEdit,
   faDoorOpen,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 import App from './App';
 
-library.add(faTimes, faTrash, faEdit, faDoorOpen);
+library.add(faTimes, faTrash, faEdit, faDoorOpen, faSearch);
 
 ReactDOM.render(<App />, document.getElementById('root'));

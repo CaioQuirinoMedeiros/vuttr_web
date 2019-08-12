@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 
 import { logout } from '../../services/auth';
 import Confirm from '../Confirm';
@@ -24,7 +23,7 @@ const Header = ({ history }) => {
         <SubTitle>Very Useful Tools to Remeber</SubTitle>
       </TitleWrapper>
       <Button onClick={() => setLogoutModal(true)}>
-        <FontAwesomeIcon icon={faDoorOpen} />
+        <FontAwesomeIcon icon="door-open" />
       </Button>
 
       <Confirm

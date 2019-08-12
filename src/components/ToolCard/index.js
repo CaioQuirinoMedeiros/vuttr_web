@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import ConfirmRemove from '../Confirm';
 import EditTool from '../EditTool';
@@ -38,10 +37,10 @@ const ToolCard = ({ tool, handleRemoveTool, handleEditTool }) => {
       </ToolInfo>
       <ButtonsWrapper>
         <ActionButton onClick={() => setEditTool(true)}>
-          <FontAwesomeIcon icon={faEdit} />
+          <FontAwesomeIcon icon="edit" />
         </ActionButton>
         <ActionButton onClick={() => openRemoveModal(true)}>
-          <FontAwesomeIcon icon={faTrash} />
+          <FontAwesomeIcon icon="trash" />
         </ActionButton>
       </ButtonsWrapper>
 
