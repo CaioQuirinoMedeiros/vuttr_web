@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons"
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-import Confirm from "../Confirm"
-import EditTool from "../EditTool"
+import ConfirmRemove from '../Confirm';
+import EditTool from '../EditTool';
 
 import {
   Container,
@@ -14,12 +14,12 @@ import {
   TagsContainer,
   Tag,
   ButtonsWrapper,
-  ActionButton
-} from "./styles"
+  ActionButton,
+} from './styles';
 
-const ToolCard = ({ tool, remove, loadTools }) => {
-  const [removeModal, openRemoveModal] = useState(false)
-  const [editModal, openEditModal] = useState(false)
+const ToolCard = ({ tool, handleRemoveTool, handleEditTool }) => {
+  const [removeModal, openRemoveModal] = useState(false);
+  const [editTool, setEditTool] = useState(false);
 
   return (
     <Container>
@@ -36,9 +36,8 @@ const ToolCard = ({ tool, remove, loadTools }) => {
           ))}
         </TagsContainer>
       </ToolInfo>
-
       <ButtonsWrapper>
-        <ActionButton onClick={() => openEditModal(true)}>
+        <ActionButton onClick={() => setEditTool(true)}>
           <FontAwesomeIcon icon={faEdit} />
         </ActionButton>
         <ActionButton onClick={() => openRemoveModal(true)}>
@@ -46,38 +45,34 @@ const ToolCard = ({ tool, remove, loadTools }) => {
         </ActionButton>
       </ButtonsWrapper>
 
-      {removeModal && (
-        <Confirm
-          confirm={() => remove(tool)}
-          closeModal={() => openRemoveModal(false)}
-          message={`Are you sure you want to remove ${tool.title}?`}
-        >
-          Remove tool
-        </Confirm>
-      )}
+      <ConfirmRemove
+        confirm={() => handleRemoveTool(tool)}
+        message={`Are you sure you want to remove ${tool.title}?`}
+        open={removeModal}
+        close={() => openRemoveModal(false)}
+      >
+        Remove tool
+      </ConfirmRemove>
 
-      {editModal && (
-        <EditTool
-          tool={tool}
-          closeModal={({ reload = false } = {}) => {
-            openEditModal(false)
-            if (reload) loadTools()
-          }}
-        />
-      )}
+      <EditTool
+        tool={tool}
+        open={editTool}
+        close={() => setEditTool(false)}
+        handleEditTool={handleEditTool}
+      />
     </Container>
-  )
-}
+  );
+};
 
 ToolCard.propTypes = {
   tool: PropTypes.shape({
     title: PropTypes.string,
     link: PropTypes.string,
     description: PropTypes.string,
-    tagsHashed: PropTypes.arrayOf(PropTypes.string)
+    tagsHashed: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  remove: PropTypes.func.isRequired,
-  loadTools: PropTypes.func.isRequired
-}
+  handleRemoveTool: PropTypes.func.isRequired,
+  handleEditTool: PropTypes.func.isRequired,
+};
 
-export default ToolCard
+export default ToolCard;

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: fixed;
@@ -12,4 +12,4 @@ export const Container = styled.div`
 
   background: var(--color-darkShadow);
   z-index: 99;
-`
+`;

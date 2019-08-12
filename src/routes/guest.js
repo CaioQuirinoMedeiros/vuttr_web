@@ -1,8 +1,8 @@
-import React from "react"
-import { Route, Redirect } from "react-router-dom"
-import PropTypes from "prop-types"
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { isAuthenticated } from "../services/auth"
+import { isAuthenticated } from '../services/auth';
 
 const Guest = ({ component: Component, ...rest }) => (
   <Route
@@ -11,10 +11,10 @@ const Guest = ({ component: Component, ...rest }) => (
       !isAuthenticated() ? <Component {...props} /> : <Redirect to="/app" />
     }
   />
-)
+);
 
 Guest.propTypes = {
-  component: PropTypes.elementType.isRequired
-}
+  component: PropTypes.elementType.isRequired,
+};
 
-export default Guest
+export default Guest;

@@ -1,15 +1,15 @@
-import React, { Component } from "react"
-import api from "../../services/api"
-import { Formik } from "formik"
-import { toast } from "react-toastify"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import ReactLoading from "react-loading"
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
+import { Formik } from 'formik';
+import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import ReactLoading from 'react-loading';
 
-import Header from "../../components/Header"
-import ToolCard from "../../components/ToolCard"
-import AddTool from "../../components/AddTool"
-import Button from "../../styles/components/Button"
+import Header from '../../components/Header';
+import ToolCard from '../../components/ToolCard';
+import AddTool from '../../components/AddTool';
+import Button from '../../styles/components/Button';
 
 import {
   Container,
@@ -19,60 +19,89 @@ import {
   SearchButton,
   CheckInput,
   ToolsContainer,
-  Message
-} from "./styles"
+  Message,
+} from './styles';
 
-export default class Home extends Component {
-  state = {
-    tools: [],
-    loading: false,
-    addToolOpen: false
-  }
+function hashTags(tool) {
+  return { ...tool, tagsHashed: tool.tags.map(tag => `#${tag}`) };
+}
 
-  componentDidMount() {
-    this.loadTools()
-  }
+function Home() {
+  const [tools, setTools] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [addTool, setAddTool] = useState(false);
 
-  loadTools = async ({ title = "", tag = "" } = {}) => {
+  async function loadTools(filter) {
     try {
-      this.setState({ loading: true })
+      setLoading(true);
 
-      const { data } = await api.get(`tools?title=${title}&tag=${tag}`)
+      let query = '';
+      if (filter) {
+        query += `?${filter.name}=${filter.value}`;
+      }
 
-      this.setState({ tools: data.map(tool => this.hashTags(tool)) })
+      const { data } = await api.get(`tools${query}`);
+
+      const tools = data.map(tool => hashTags(tool));
+
+      setTools(tools);
     } catch (err) {
-      toast.error("Couldn't load the tools", { className: "toast-error" })
+      toast.error("Couldn't load the tools", { className: 'toast-error' });
     } finally {
-      this.setState({ loading: false })
+      setLoading(false);
     }
   }
 
-  removeTool = async ({ title, id }) => {
+  async function handleAddTool(tool) {
     try {
-      await api.delete(`tools/${id}`)
+      const { data } = await api.post('tools', tool);
+      setTools([...tools, hashTags(data)]);
 
-      toast.success(`Tool ${title} removed!`, { className: "toast-success" })
-
-      this.loadTools()
+      toast.success(`Tool "${data.title}" added!`, {
+        className: 'toast-success',
+      });
     } catch (err) {
-      toast.error("Tool not removed, try again", { className: "toast-error" })
+      toast.error('Unable to add tool', {
+        className: 'toast-error',
+      });
     }
   }
 
-  hashTags = tool => ({ ...tool, tagsHashed: tool.tags.map(tag => `#${tag}`) })
+  async function handleEditTool(id, toolData) {
+    try {
+      const { data } = await api.put(`tools/${id}`, toolData);
 
-  openAddModal = () => {
-    this.setState({ addToolOpen: true })
+      const newTools = tools.map(tool =>
+        tool.id === id ? hashTags(data) : tool
+      );
+      setTools(newTools);
+
+      toast.success(`Tool "${data.title}" edited!`, {
+        className: 'toast-success',
+      });
+    } catch (err) {
+      toast.error('Unable to edit tool', {
+        className: 'toast-error',
+      });
+    }
   }
 
-  closeAddModal = ({ reload = false } = {}) => {
-    this.setState({ addToolOpen: false })
-    if (reload) this.loadTools()
+  async function handleRemoveTool({ title, id }) {
+    try {
+      await api.delete(`tools/${id}`);
+      setTools(tools.filter(tool => tool.id !== id));
+
+      toast.success(`Tool "${title}" removed!`, { className: 'toast-success' });
+    } catch (err) {
+      toast.error('Tool not removed, try again', { className: 'toast-error' });
+    }
   }
 
-  renderTools = () => {
-    const { tools } = this.state
+  useEffect(() => {
+    loadTools();
+  }, []);
 
+  function renderTools() {
     return (
       <>
         {tools.length ? (
@@ -80,59 +109,64 @@ export default class Home extends Component {
             <ToolCard
               key={tool.id}
               tool={tool}
-              remove={this.removeTool}
-              loadTools={this.loadTools}
+              handleEditTool={handleEditTool}
+              handleRemoveTool={handleRemoveTool}
             />
           ))
         ) : (
-          <Message>You have no tools saved</Message>
+          <Message>No tools found</Message>
         )}
       </>
-    )
+    );
   }
 
-  render() {
-    const { loading, addToolOpen } = this.state
+  return (
+    <Container>
+      <Header />
 
-    return (
-      <Container>
-        <Header />
+      <Options>
+        <Formik
+          onSubmit={values => {
+            if (values.search) {
+              const filter = {
+                name: values.tagsOnly ? 'tag' : 'title',
+                value: values.search,
+              };
 
-        <Options>
-          <Formik
-            onSubmit={values => {
-              const searchField = values.tagsOnly ? "tag" : "title"
-              this.loadTools({ [searchField]: values.search })
-            }}
-            initialValues={{ search: "", tagsOnly: false }}
-            render={() => (
-              <Form>
-                <SearchButton type="submit" animate>
-                  <FontAwesomeIcon icon={faSearch} />
-                </SearchButton>
-                <Input name="search" placeholder="Search..." />
-                <CheckInput htmlFor="tagsOnly">
-                  <Input type="checkbox" name="tagsOnly" />
-                  search in tags
-                </CheckInput>
-              </Form>
-            )}
-          />
-          <Button animate onClick={this.openAddModal}>
-            + Add
-          </Button>
-        </Options>
-
-        <ToolsContainer>
-          {loading ? (
-            <ReactLoading type="spin" color="#2F55CC" />
-          ) : (
-            this.renderTools()
+              loadTools(filter);
+            } else {
+              loadTools();
+            }
+          }}
+          render={() => (
+            <Form>
+              <SearchButton type="submit" animate>
+                <FontAwesomeIcon icon={faSearch} />
+              </SearchButton>
+              <Input name="search" placeholder="Search..." />
+              <CheckInput htmlFor="tagsOnly">
+                <Input type="checkbox" name="tagsOnly" />
+                search in tags
+              </CheckInput>
+            </Form>
           )}
-        </ToolsContainer>
+        />
+        <Button animate onClick={() => setAddTool(true)}>
+          + Add
+        </Button>
+      </Options>
 
-        {addToolOpen && <AddTool closeModal={this.closeAddModal} />}
-      </Container>
-    )
-  }
+      <ToolsContainer>
+        {loading ? <ReactLoading type="spin" color="#2F55CC" /> : renderTools()}
+      </ToolsContainer>
+
+      <AddTool
+        open={addTool}
+        close={() => setAddTool(false)}
+        handleAddTool={handleAddTool}
+      />
+    </Container>
+  );
 }
+
+export default Home;

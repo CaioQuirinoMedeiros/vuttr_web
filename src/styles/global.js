@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components"
-import "react-toastify/dist/ReactToastify.min.css"
+import { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export default createGlobalStyle`
   @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap");
@@ -126,8 +126,8 @@ export default createGlobalStyle`
 
   .toast-success {
     border-radius: 3px !important;
-    background: var(--color-success) !important; 
-  
+    background: var(--color-success) !important;
+
     &:hover {
       background: var(--color-successHover);
     }
@@ -135,10 +135,10 @@ export default createGlobalStyle`
 
   .toast-error {
     border-radius: 3px !important;
-    background: var(--color-danger) !important; 
-  
+    background: var(--color-danger) !important;
+
     &:hover {
       background: var(--color-dangerHover);
     }
   }
-`
+`;

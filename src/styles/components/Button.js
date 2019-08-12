@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled, { css } from 'styled-components';
 
 const sizes = {
   small: css`
@@ -12,8 +12,8 @@ const sizes = {
   big: css`
     height: 4.4rem;
     font-size: 1.8rem;
-  `
-}
+  `,
+};
 
 const colors = {
   danger: css`
@@ -39,11 +39,11 @@ const colors = {
     &:disabled {
       background: var(--color-lightestBlue);
     }
-  `
-}
+  `,
+};
 
 const Button = styled.button.attrs({
-  type: "button"
+  type: 'button',
 })`
   display: flex;
   align-items: center;
@@ -56,8 +56,8 @@ const Button = styled.button.attrs({
   transition: all 0.2s;
   box-shadow: 0 10px 15px 0 var(--color-lighterShadow);
 
-  ${props => sizes[props.size || "medium"]};
-  ${props => colors[props.color || "primary"]};
+  ${props => sizes[props.size || 'medium']};
+  ${props => colors[props.color || 'primary']};
 
   ${props =>
     props.animate &&
@@ -77,6 +77,6 @@ const Button = styled.button.attrs({
   &:disabled {
     cursor: not-allowed;
   }
-`
+`;
 
-export default Button
+export default Button;

@@ -1,10 +1,10 @@
-import React from "react"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import { toast } from "react-toastify"
+import React from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
-import api from "../../../services/api"
-import { login } from "../../../services/auth"
+import api from '../../../services/api';
+import { login } from '../../../services/auth';
 
 import {
   Container,
@@ -13,18 +13,18 @@ import {
   Input,
   ButtonsWrapper,
   Button,
-  Link
-} from "../styles"
+  Link,
+} from '../styles';
 
 const signUpSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
+  name: Yup.string().required('Name is required'),
   email: Yup.string()
-    .email("Type a valid email")
-    .required("Email is required"),
+    .email('Type a valid email')
+    .required('Email is required'),
   password: Yup.string()
-    .min(6, "Your password must have at least 6 characters")
-    .required("Password is required")
-})
+    .min(6, 'Your password must have at least 6 characters')
+    .required('Password is required'),
+});
 
 const SignUp = ({ history }) => (
   <Container>
@@ -32,19 +32,19 @@ const SignUp = ({ history }) => (
       validationSchema={signUpSchema}
       onSubmit={async (values, actions) => {
         try {
-          const { data } = await api.post("register", values)
+          const { data } = await api.post('register', values);
 
-          login(data.token)
+          login(data.token);
 
-          history.push("/app")
+          history.push('/app');
 
           toast.success(`Welcome, ${data.user.name}!`, {
-            className: "toast-success"
-          })
+            className: 'toast-success',
+          });
         } catch (err) {
-          toast.error("Something went wrong", { className: "toast-error" })
+          toast.error('Something went wrong', { className: 'toast-error' });
         } finally {
-          actions.setSubmitting(false)
+          actions.setSubmitting(false);
         }
       }}
       render={({ isValid, isSubmitting, errors, touched }) => (
@@ -83,6 +83,6 @@ const SignUp = ({ history }) => (
       )}
     />
   </Container>
-)
+);
 
-export default SignUp
+export default SignUp;

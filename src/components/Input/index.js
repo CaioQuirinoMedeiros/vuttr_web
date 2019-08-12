@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import StyledInput from "../../styles/components/Input"
+import StyledInput from '../../styles/components/Input';
 
-import { InputWrapper, Label, Error } from "./styles"
+import { InputWrapper, Label, Error } from './styles';
 
 const Input = props => (
   <InputWrapper>
@@ -11,14 +11,14 @@ const Input = props => (
     <StyledInput {...props} id={props.name} />
     {props.error && <Error>{props.error}</Error>}
   </InputWrapper>
-)
+);
 
 Input.propTypes = {
   props: PropTypes.shape({
     name: PropTypes.string,
     label: PropTypes.string,
-    error: PropTypes.string
-  }).isRequired
-}
+    error: PropTypes.string,
+  }),
+};
 
-export default Input
+export default Input;
