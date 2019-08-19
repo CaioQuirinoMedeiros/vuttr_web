@@ -2,7 +2,6 @@
   "name": "vuttr_caio",
   "version": "0.1.0",
   "author": "Caio Quirino",
-  "homepage": "https://caioquirinomedeiros.github.io/vuttr_web",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.20",
